@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "commonjs",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "Node",
+		"types": ["node"]
+	},
+	"include": [
+		"scripts/**/*.js",
+		"models/**/*.js",
+		"controllers/**/*.js",
+		"routes/**/*.js"
+	]
+}
