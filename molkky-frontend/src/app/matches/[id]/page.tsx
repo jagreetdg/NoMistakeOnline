@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import API from "../utils/api";
+import API from "../../utils/api";
 import io, { Socket } from "socket.io-client";
 
 interface MatchHistory {

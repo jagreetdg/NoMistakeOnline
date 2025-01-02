@@ -25,8 +25,8 @@ const MatchGrid: React.FC<MatchGridProps> = ({ matches }) => {
 					<p>
 						Score: {match.scores[0]} - {match.scores[1]}
 					</p>
-					<Link href={`/matches/${match._id}`}>
-						<a className="text-blue-500">View Details</a>
+					<Link href={`/matches/${match._id}`} className="text-blue-500">
+						View Details
 					</Link>
 				</div>
 			))}
