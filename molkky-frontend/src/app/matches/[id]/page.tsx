@@ -62,8 +62,23 @@ const MatchDetail = () => {
 			pinsHit: selectedPins,
 			score: selectedPins.reduce((sum, pin) => sum + pin, 0),
 		});
-		socket.emit("updateScore", match);
+		const response = await API.get(`/matches/${match._id}`);
+		setMatch(response.data);
 		setSelectedPins([]);
+	};
+
+	const handleUndo = async () => {
+		if (!match) return;
+		await API.put(`/matches/${match._id}/undo`);
+		const response = await API.get(`/matches/${match._id}`);
+		setMatch(response.data);
+	};
+
+	const handleClear = async () => {
+		if (!match) return;
+		await API.put(`/matches/${match._id}/clear`);
+		const response = await API.get(`/matches/${match._id}`);
+		setMatch(response.data);
 	};
 
 	if (!match) return <div>Loading...</div>;
@@ -72,9 +87,10 @@ const MatchDetail = () => {
 		<div>
 			<PinBoard onPinSelect={handlePinSelect} selectedPins={selectedPins} />
 			<Controls
-				onUndo={() => console.log("Undo")}
-        onScoreUpdate={handleScoreUpdate}
-        teams = {match.teams}
+				onUndo={handleUndo}
+				onClear={handleClear}
+				onScoreUpdate={handleScoreUpdate}
+				teams={match.teams}
 			/>
 			<Scoreboard
 				teams={match.teams}
