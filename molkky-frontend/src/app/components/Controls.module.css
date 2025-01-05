@@ -1,0 +1,33 @@
+.controls {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.button {
+	padding: 8px 16px;
+	border: none;
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.undo {
+	background: #e5e7eb;
+}
+
+.clear {
+	background: #ef4444;
+  color: white;
+}
+
+.teamA {
+	background: #3b82f6;
+	color: white;
+}
+
+.teamB {
+	background: #3b82f6;
+	color: white;
+}

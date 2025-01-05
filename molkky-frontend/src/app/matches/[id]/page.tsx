@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import API from "../../utils/api";
 import io, { Socket } from "socket.io-client";
-
-import MatchBoard from "../../components/MatchBoard";
-import ScoreButtons from "../../components/ScoreButtons";
-import ScoreDisplay from "../../components/ScoreDisplay";
-import MatchHistory from "../../components/MatchHistory";
+import PinBoard from "../../components/PinBoard";
+import Scoreboard from "../../components/Scoreboard";
+import Controls from "../../components/Controls";
 
 interface MatchHistory {
 	team: string;
@@ -50,13 +48,13 @@ const MatchDetail = () => {
 		};
 	}, [id]);
 
-	const togglePinSelection = (pin: number) => {
+	const handlePinSelect = (pin: number) => {
 		setSelectedPins((prev) =>
 			prev.includes(pin) ? prev.filter((p) => p !== pin) : [...prev, pin]
 		);
 	};
 
-	const handleUpdateScore = async (team: string) => {
+	const handleScoreUpdate = async (team: number) => {
 		if (!match || selectedPins.length === 0) return;
 
 		await API.put(`/matches/${match._id}`, {
@@ -72,25 +70,16 @@ const MatchDetail = () => {
 
 	return (
 		<div>
-			<ScoreDisplay
-				teamA={match.teams[0]}
-				teamB={match.teams[1]}
-				scoreA={match.scores[0]}
-				scoreB={match.scores[1]}
+			<PinBoard onPinSelect={handlePinSelect} selectedPins={selectedPins} />
+			<Controls
+				onUndo={() => console.log("Undo")}
+        onScoreUpdate={handleScoreUpdate}
+        teams = {match.teams}
 			/>
-			<MatchBoard
-				selectedPins={selectedPins}
-				togglePinSelection={togglePinSelection}
-			/>
-			<ScoreButtons
-				onUpdateScore={handleUpdateScore}
-				teamA={match.teams[0]}
-				teamB={match.teams[1]}
-			/>
-			<MatchHistory
+			<Scoreboard
+				teams={match.teams}
+				scores={match.scores}
 				history={match.history}
-				teamA={match.teams[0]}
-				teamB={match.teams[1]}
 			/>
 		</div>
 	);

@@ -26,3 +26,5 @@ molkky-backend/.nyc_output
 molkky-backend/coverage
 molkky-backend/benchmarks/graphs
 molkky-backend/.env
+
+.vscode

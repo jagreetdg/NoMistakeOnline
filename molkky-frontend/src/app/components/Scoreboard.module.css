@@ -1,0 +1,67 @@
+.scoreboard {
+    margin-top: 16px;
+    background-color: #f0f8ff; /* Light color for the scoreboard */
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.scoreboard table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.scoreboard th,
+.scoreboard td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    background-color: #e6f7ff; /* Light color for table cells */
+}
+
+.history {
+    margin-top: 16px;
+    text-align: center;
+    background-color: #fff0f5; /* Light color for the history section */
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.historyContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    margin-bottom: 8px;
+}
+
+.teamLabel {
+    flex-shrink: 0;
+    margin-right: 8px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center; /* Center the label vertically */
+    background-color: #ffe4e1; /* Light color for team labels */
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.history table {
+    width: 100%;
+}
+
+.history td {
+    background: #f3f4f6;
+    text-align: center;
+}
+
+.scrollableWrapper {
+    max-width: 320px;
+    overflow-x: auto;
+    padding-bottom: 8px; /* Add padding to account for hidden scrollbar */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollableWrapper::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
