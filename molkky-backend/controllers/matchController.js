@@ -60,3 +60,21 @@ exports.undoLastAction = async (req, res) => {
 		res.status(500).json({ error: err.message });
 	}
 };
+
+// Clear the entire history and reset scores
+exports.clearHistory = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const match = await Match.findById(id);
+		if (!match) return res.status(404).json({ message: "Match not found" });
+
+		match.history = [];
+		match.scores = [0, 0]; // Reset scores to 0
+
+		await match.save();
+		res.json(match);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+};
