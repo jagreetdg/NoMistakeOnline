@@ -60,7 +60,7 @@ const MatchDetail = () => {
 		await API.put(`/matches/${match._id}`, {
 			team,
 			pinsHit: selectedPins,
-			score: selectedPins.reduce((sum, pin) => sum + pin, 0),
+			score: selectedPins.length > 1 ? selectedPins.length : selectedPins[0],
 		});
 		const response = await API.get(`/matches/${match._id}`);
 		setMatch(response.data);
