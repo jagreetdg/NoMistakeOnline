@@ -10,6 +10,17 @@ exports.getMatches = async (req, res) => {
 	}
 };
 
+// Fetch a single match by ID
+exports.getMatchById = async (req, res) => {
+    try {
+        const match = await Match.findById(req.params.id);
+        if (!match) return res.status(404).json({ message: "Match not found" });
+        res.json(match);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 // Update a match
 exports.updateMatch = async (req, res) => {
 	try {
