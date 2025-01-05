@@ -4,10 +4,11 @@ import styles from "./Controls.module.css";
 interface ControlsProps {
 	onUndo: () => void;
   onScoreUpdate: (team: 0 | 1) => void;
+  onClear: () => void;
   teams: string[];
 }
 
-const Controls: React.FC<ControlsProps> = ({ onUndo, onScoreUpdate,teams }) => {
+const Controls: React.FC<ControlsProps> = ({ onUndo, onScoreUpdate,onClear, teams }) => {
 	return (
 		<div className={styles.controls}>
 			<button className={`${styles.undo} ${styles.button}`} onClick={onUndo}>
@@ -27,7 +28,7 @@ const Controls: React.FC<ControlsProps> = ({ onUndo, onScoreUpdate,teams }) => {
 			</button>
 			<button
 				className={`${styles.clear} ${styles.button}`}
-				onClick={() => onScoreUpdate(1)}
+				onClick={onClear}
 			>
 				Clear
 			</button>
