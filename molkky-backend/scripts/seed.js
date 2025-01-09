@@ -20,67 +20,67 @@ const seedDatabase = async () => {
 		// Add default matches
 		await Match.insertMany([
 			{
-				teams: ["Team A", "Team B"],
+				teams: ["A", "B"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team C", "Team D"],
+				teams: ["C", "D"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team E", "Team F"],
+				teams: ["E", "F"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team G", "Team H"],
+				teams: ["G", "H"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team I", "Team J"],
+				teams: ["I", "J"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team K", "Team L"],
+				teams: ["K", "L"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team M", "Team N"],
+				teams: ["M", "N"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team O", "Team P"],
+				teams: ["O", "P"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team Q", "Team R"],
+				teams: ["Q", "R"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team S", "Team T"],
+				teams: ["S", "T"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team U", "Team V"],
+				teams: ["U", "V"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team W", "Team X"],
+				teams: ["W", "X"],
 				scores: [0, 0],
 				history: [],
 			},
 			{
-				teams: ["Team Y", "Team Z"],
+				teams: ["Y", "Z"],
 				scores: [0, 0],
 				history: [],
 			},

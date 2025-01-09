@@ -33,14 +33,42 @@ exports.updateMatch = async (req, res) => {
 		if (match.scores[team] + score > 50) {
 			pinsHit.push(-1 * match.scores[team]);
 			match.scores[team] = 25;
-		} else {
-			match.scores[team] += score;
+			match.history.push({ team, pinsHit, score });
+			await match.save();
+			return res.status(200).json({
+				tag: "bust",
+				message: `${match.teams[team]} has gone over 50 points and their score has been reset to 25!`,
+			});
 		}
 
-    match.history.push({ team, pinsHit, score });
-    
-    //TODO Check 3 Miss Condition
-		//TODO Set Win Condition
+		match.scores[team] += score;
+		match.history.push({ team, pinsHit, score });
+
+		if (match.scores[team] === 50) {
+			const winningTeam = match.teams[team];
+
+			// End the game by calling clearHistory without sending a response
+			await exports.clearHistory(req, res, false);
+			return res.status(200).json({
+				tag: "win",
+				message: `${winningTeam} has won the game!`,
+			});
+		}
+
+		// Check if pinsHit has at least 3 elements and if the last 3 elements are 0
+		if (
+			match.history.length >= 3 &&
+			match.history.slice(-3).every((entry) => entry.pinsHit.length === 0)
+		) {
+			const losingTeam = match.teams[team];
+
+			// End the game by calling clearHistory without sending a response
+			await exports.clearHistory(req, res, false);
+			return res.status(200).json({
+				tag: "3miss",
+				message: `${losingTeam} has lost the game!`,
+			});
+		}
 
 		await match.save();
 		res.json(match);
@@ -71,7 +99,6 @@ exports.undoLastAction = async (req, res) => {
 		} else {
 			match.scores[lastAction.team] -= lastAction.score;
 		}
-
 		await match.save();
 		res.json(match);
 	} catch (err) {
@@ -80,7 +107,7 @@ exports.undoLastAction = async (req, res) => {
 };
 
 // Clear the entire history and reset scores
-exports.clearHistory = async (req, res) => {
+exports.clearHistory = async (req, res, sendResponse = true) => {
 	try {
 		const { id } = req.params;
 
@@ -91,8 +118,12 @@ exports.clearHistory = async (req, res) => {
 		match.scores = [0, 0]; // Reset scores to 0
 
 		await match.save();
-		res.json(match);
+		if (sendResponse) {
+			res.json(match);
+		}
 	} catch (err) {
-		res.status(500).json({ error: err.message });
+		if (sendResponse) {
+			res.status(500).json({ error: err.message });
+		}
 	}
 };
