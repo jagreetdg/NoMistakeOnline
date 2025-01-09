@@ -33,10 +33,27 @@ exports.updateMatch = async (req, res) => {
 		if (match.scores[team] + score > 50) {
 			pinsHit.push(-1 * match.scores[team]);
 			match.scores[team] = 25;
-		} else {
-			match.scores[team] += score;
+			match.history.push({ team, pinsHit, score });
+			await match.save();
+			return res.status(200).json({
+				tag: "bust",
+				message: `${match.teams[team]} has gone over 50 points and their score has been reset to 25!`,
+			});
 		}
+
+		match.scores[team] += score;
 		match.history.push({ team, pinsHit, score });
+
+		if (match.scores[team] === 50) {
+			const winningTeam = match.teams[team];
+
+			// End the game by calling clearHistory without sending a response
+			await exports.clearHistory(req, res, false);
+			return res.status(200).json({
+				tag: "win",
+				message: `${winningTeam} has won the game!`,
+			});
+		}
 
 		// Check if pinsHit has at least 3 elements and if the last 3 elements are 0
 		if (
@@ -47,9 +64,10 @@ exports.updateMatch = async (req, res) => {
 
 			// End the game by calling clearHistory without sending a response
 			await exports.clearHistory(req, res, false);
-			return res
-				.status(200)
-				.json({ message: `${losingTeam} has lost the game!` });
+			return res.status(200).json({
+				tag: "3miss",
+				message: `${losingTeam} has lost the game!`,
+			});
 		}
 
 		await match.save();

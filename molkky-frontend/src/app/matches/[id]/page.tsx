@@ -65,15 +65,28 @@ const MatchDetail = () => {
 			const response = await API.put(`/matches/${match._id}`, {
 				team,
 				pinsHit: selectedPins,
-				score: selectedPins.reduce((sum, pin) => sum + pin, 0),
-			});
-			if (response.data.message) {
-				Swal.fire({
-					title: "Game Over",
-					text: response.data.message,
-					icon: "info",
-					confirmButtonText: "OK",
-				});
+				score:
+					selectedPins.length === 1 ? selectedPins[0] : selectedPins.length,
+      });
+
+      if (response.data.message) {
+        if (response.data.tag === "win") {
+          Swal.fire({
+            title: "Winner!",
+            text: response.data.message,
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        } else {
+          const alertTitle = response.data.tag === "bust" ? "Bust" : "3-Miss";
+          const alertIcon = response.data.tag === "bust" ? "warning" : "error";
+          Swal.fire({
+            title: alertTitle,
+            text: response.data.message,
+            icon: alertIcon,
+            confirmButtonText: "OK",
+          });
+        }
 			}
 			const updatedMatch = await API.get(`/matches/${match._id}`);
 			setMatch(updatedMatch.data);
