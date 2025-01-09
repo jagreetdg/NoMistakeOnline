@@ -1,67 +1,52 @@
 .scoreboard {
-    margin-top: 16px;
-    background-color: #f0f8ff; /* Light color for the scoreboard */
-    padding: 16px;
-    border-radius: 8px;
+	margin-top: 16px;
+	background-color: #f0f8ff; /* Light color for the scoreboard */
+	padding: 16px;
+	border-radius: 8px;
 }
 
 .scoreboard table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 16px;
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 16px;
 }
 
 .scoreboard th,
 .scoreboard td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-    background-color: #e6f7ff; /* Light color for table cells */
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #d9f2ff; /* Light color for table cells */
 }
 
-.history {
-    margin-top: 16px;
-    text-align: center;
-    background-color: #fff0f5; /* Light color for the history section */
-    padding: 16px;
-    border-radius: 8px;
-}
-
-.historyContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center the content horizontally */
-    margin-bottom: 8px;
-}
-
-.teamLabel {
-    flex-shrink: 0;
-    margin-right: 8px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center; /* Center the label vertically */
-    background-color: #ffe4e1; /* Light color for team labels */
-    padding: 8px;
-    border-radius: 4px;
-}
-
-.history table {
-    width: 100%;
-}
-
-.history td {
-    background: #f3f4f6;
-    text-align: center;
+.scoreboard th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3em;
+	background-color: #95d7fa; /* Light color for table cells */
 }
 
 .scrollableWrapper {
-    max-width: 320px;
-    overflow-x: auto;
-    padding-bottom: 8px; /* Add padding to account for hidden scrollbar */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+	max-height: 200px; /* Set a max height for the scrollable area */
+	overflow-y: auto; /* Enable vertical scrolling */
+	padding-bottom: 8px; /* Add padding to account for hidden scrollbar */
 }
 
-.scrollableWrapper::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
+.scrollable {
+	display: flex;
+	flex-direction: column; /* Stack items vertically */
+}
+
+.historyItem {
+	background: #e6f7ff;
+	text-align: center;
+	padding: 4px;
+	margin: 2px 0;
+	border-radius: 4px;
+	font-weight: normal; /* Make text not bold */
+	font-size: 0.9em; /* Make text smaller */
 }

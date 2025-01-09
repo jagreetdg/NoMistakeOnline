@@ -58,7 +58,7 @@ const MatchDetail = () => {
 	};
 
 	const handleScoreUpdate = async (team: number) => {
-		if (!match || selectedPins.length === 0) return;
+    if (!match) return;
 
 		await API.put(`/matches/${match._id}`, {
 			team,
