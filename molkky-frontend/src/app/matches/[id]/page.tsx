@@ -8,6 +8,7 @@ import PinBoard from "../../components/PinBoard";
 import Scoreboard from "../../components/Scoreboard";
 import Controls from "../../components/Controls";
 import Image from "next/image";
+import Swal from "sweetalert2"; // Import sweetalert2
 import styles from "./MatchDetail.module.css"; // Import the CSS module
 
 interface MatchHistory {
@@ -58,16 +59,28 @@ const MatchDetail = () => {
 	};
 
 	const handleScoreUpdate = async (team: number) => {
-    if (!match) return;
+		if (!match) return;
 
-		await API.put(`/matches/${match._id}`, {
-			team,
-			pinsHit: selectedPins,
-			score: selectedPins.reduce((sum, pin) => sum + pin, 0),
-		});
-		const response = await API.get(`/matches/${match._id}`);
-		setMatch(response.data);
-		setSelectedPins([]);
+		try {
+			const response = await API.put(`/matches/${match._id}`, {
+				team,
+				pinsHit: selectedPins,
+				score: selectedPins.reduce((sum, pin) => sum + pin, 0),
+			});
+			if (response.data.message) {
+				Swal.fire({
+					title: "Game Over",
+					text: response.data.message,
+					icon: "info",
+					confirmButtonText: "OK",
+				});
+			}
+			const updatedMatch = await API.get(`/matches/${match._id}`);
+			setMatch(updatedMatch.data);
+			setSelectedPins([]);
+		} catch (error) {
+			console.error("Error updating score:", error);
+		}
 	};
 
 	const handleUndo = async () => {
@@ -86,11 +99,11 @@ const MatchDetail = () => {
 
 	if (!match) return <div>Loading...</div>;
 
-  return (
+	return (
 		<div>
 			<div className={styles.header}>
 				<button onClick={() => router.push("/")} className={styles.backButton}>
-					<Image src="/back.png" alt="Back" width={40} height={40} />
+					<Image src="/back.png" alt="Back" width={24} height={24} />
 				</button>
 			</div>
 			<PinBoard onPinSelect={handlePinSelect} selectedPins={selectedPins} />
