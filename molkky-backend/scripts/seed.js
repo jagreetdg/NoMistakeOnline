@@ -39,6 +39,51 @@ const seedDatabase = async () => {
 				scores: [0, 0],
 				history: [],
 			},
+			{
+				teams: ["Team I", "Team J"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team K", "Team L"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team M", "Team N"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team O", "Team P"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team Q", "Team R"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team S", "Team T"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team U", "Team V"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team W", "Team X"],
+				scores: [0, 0],
+				history: [],
+			},
+			{
+				teams: ["Team Y", "Team Z"],
+				scores: [0, 0],
+				history: [],
+			},
 		]);
 
 		console.log("✅ Database successfully seeded!");

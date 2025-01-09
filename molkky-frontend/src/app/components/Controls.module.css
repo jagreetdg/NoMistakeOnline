@@ -15,19 +15,28 @@
 
 .undo {
 	background: #e5e7eb;
+  padding-top: 10px;
+}
+
+.undo:hover {
+    background-color: #c2c2c2; /* Change background color on hover */
 }
 
 .clear {
 	background: #ef4444;
   color: white;
+  padding-top: 10px;
 }
 
-.teamA {
+.clear:hover {
+    background-color: #ca3939; /* Change background color on hover */
+}
+
+.team {
 	background: #3b82f6;
 	color: white;
 }
 
-.teamB {
-	background: #3b82f6;
-	color: white;
+.team:hover {
+    background-color: #3577e0; /* Change background color on hover */
 }

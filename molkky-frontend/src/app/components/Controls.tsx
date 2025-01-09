@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import styles from "./Controls.module.css";
 
 interface ControlsProps {
@@ -12,25 +13,22 @@ const Controls: React.FC<ControlsProps> = ({ onUndo, onScoreUpdate,onClear, team
 	return (
 		<div className={styles.controls}>
 			<button className={`${styles.undo} ${styles.button}`} onClick={onUndo}>
-				Undo
+				<Image src="/undo.png" alt="Undo" width={20} height={20} />
 			</button>
 			<button
-				className={`${styles.teamA} ${styles.button}`}
+				className={`${styles.team} ${styles.button}`}
 				onClick={() => onScoreUpdate(0)}
 			>
 				{teams[0]} +
 			</button>
 			<button
-				className={`${styles.teamB} ${styles.button}`}
+				className={`${styles.team} ${styles.button}`}
 				onClick={() => onScoreUpdate(1)}
 			>
 				{teams[1]} +
 			</button>
-			<button
-				className={`${styles.clear} ${styles.button}`}
-				onClick={onClear}
-			>
-				Clear
+			<button className={`${styles.clear} ${styles.button}`} onClick={onClear}>
+				<Image src="/reset.png" alt="Undo" width={20} height={20} />
 			</button>
 		</div>
 	);
