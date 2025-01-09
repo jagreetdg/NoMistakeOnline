@@ -86,7 +86,7 @@ const MatchDetail = () => {
 
 	if (!match) return <div>Loading...</div>;
 
-	return (
+  return (
 		<div>
 			<div className={styles.header}>
 				<button onClick={() => router.push("/")} className={styles.backButton}>
