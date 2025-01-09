@@ -20,7 +20,7 @@
 }
 
 .title {
-	font-size: 20px; /* Large title font */
+	font-size: 16px; /* Large title font */
 	font-weight: 800; /* Bold and strong */
 	white-space: nowrap; /* Prevent text from wrapping */
 	color: #ffffff; /* White text for contrast */

@@ -8,10 +8,11 @@ interface ScoreboardProps {
 }
 
 const Scoreboard: React.FC<ScoreboardProps> = ({ teams, scores, history }) => {
-	return (
+	//TODO Add Miss Counter Indicator
+  return (
 		<div className={styles.scoreboard}>
 			<table className={styles.table}>
-				<thead>
+        <thead>
 					<tr>
 						<th>{teams[0]}</th>
 						<th>{teams[1]}</th>
