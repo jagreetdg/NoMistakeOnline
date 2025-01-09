@@ -26,6 +26,10 @@
 	cursor: pointer;
 }
 
+.pin:hover {
+    background-color: #e6e5e5; /* Change background color on hover */
+}
+
 .pin.selected {
 	background: #3b82f6;
 	color: #fff;

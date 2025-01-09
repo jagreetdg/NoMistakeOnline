@@ -1,0 +1,22 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+}
+
+.backButton {
+	background-color: transparent; /* No background */
+	padding: 10px 10px;
+	cursor: pointer;
+	color: white; /* White text */
+	border: none;
+	border-radius: 5px;
+	font-size: 0px;
+	font-weight: bold;
+	transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+	background-color: #adadad; /* Darker green on hover */
+}

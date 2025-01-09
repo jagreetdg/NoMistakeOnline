@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import API from "../../utils/api";
 import io, { Socket } from "socket.io-client";
 import PinBoard from "../../components/PinBoard";
 import Scoreboard from "../../components/Scoreboard";
 import Controls from "../../components/Controls";
+import Image from "next/image";
+import styles from "./MatchDetail.module.css"; // Import the CSS module
 
 interface MatchHistory {
 	team: string;
@@ -29,6 +31,7 @@ const MatchDetail = () => {
 	const [selectedPins, setSelectedPins] = useState<number[]>([]);
 	const params = useParams();
 	const id = params?.id as string;
+	const router = useRouter(); // Use the useRouter hook
 
 	useEffect(() => {
 		if (!id) return;
@@ -60,7 +63,7 @@ const MatchDetail = () => {
 		await API.put(`/matches/${match._id}`, {
 			team,
 			pinsHit: selectedPins,
-			score: selectedPins.length > 1 ? selectedPins.length : selectedPins[0],
+			score: selectedPins.reduce((sum, pin) => sum + pin, 0),
 		});
 		const response = await API.get(`/matches/${match._id}`);
 		setMatch(response.data);
@@ -85,6 +88,11 @@ const MatchDetail = () => {
 
 	return (
 		<div>
+			<div className={styles.header}>
+				<button onClick={() => router.push("/")} className={styles.backButton}>
+					<Image src="/back.png" alt="Back" width={40} height={40} />
+				</button>
+			</div>
 			<PinBoard onPinSelect={handlePinSelect} selectedPins={selectedPins} />
 			<Controls
 				onUndo={handleUndo}
