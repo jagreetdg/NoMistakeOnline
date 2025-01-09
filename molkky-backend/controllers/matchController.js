@@ -37,8 +37,9 @@ exports.updateMatch = async (req, res) => {
 			match.scores[team] += score;
 		}
 
-		match.history.push({ team, pinsHit, score });
-
+    match.history.push({ team, pinsHit, score });
+    
+    //TODO Check 3 Miss Condition
 		//TODO Set Win Condition
 
 		await match.save();

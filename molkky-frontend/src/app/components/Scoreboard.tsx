@@ -22,47 +22,38 @@ const Scoreboard: React.FC<ScoreboardProps> = ({ teams, scores, history }) => {
 						<td>{scores[0]}</td>
 						<td>{scores[1]}</td>
 					</tr>
+					<tr>
+						<td>
+							<div className={styles.scrollableWrapper}>
+								<div className={styles.scrollable}>
+									{history
+										.filter((entry) => entry.team === "0")
+										.reverse() // Reverse the order to show newest on top
+										.map((entry, index) => (
+											<div key={index} className={styles.historyItem}>
+												{entry.score}
+											</div>
+										))}
+								</div>
+							</div>
+						</td>
+						<td>
+							<div className={styles.scrollableWrapper}>
+								<div className={styles.scrollable}>
+									{history
+										.filter((entry) => entry.team === "1")
+										.reverse() // Reverse the order to show newest on top
+										.map((entry, index) => (
+											<div key={index} className={styles.historyItem}>
+												{entry.score}
+											</div>
+										))}
+								</div>
+							</div>
+						</td>
+					</tr>
 				</tbody>
 			</table>
-			<div className={styles.history}>
-				<h4>History</h4>
-				<div className={styles.historyContainer}>
-					<div className={styles.teamLabel}>{teams[0]}</div>
-					<div className={styles.scrollableWrapper}>
-						<div className={styles.scrollable}>
-							<table className={styles.table}>
-								<tbody>
-									<tr>
-										{history
-											.filter((entry) => entry.team === "0")
-											.map((entry, index) => (
-												<td key={index}>{entry.score}</td>
-											))}
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div className={styles.historyContainer}>
-					<div className={styles.teamLabel}>{teams[1]}</div>
-					<div className={styles.scrollableWrapper}>
-						<div className={styles.scrollable}>
-							<table className={styles.table}>
-								<tbody>
-									<tr>
-										{history
-											.filter((entry) => entry.team === "1")
-											.map((entry, index) => (
-												<td key={index}>{entry.score}</td>
-											))}
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 };
