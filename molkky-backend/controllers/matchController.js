@@ -89,10 +89,6 @@ exports.undoLastAction = async (req, res) => {
 		if (!lastAction)
 			return res.status(400).json({ message: "No actions to undo" });
 
-		if (lastAction.pinsHit.length == 0) {
-			return res.status(500).json({ error: "Pins Hit cannot be zero" });
-		}
-
 		const lastPin = lastAction.pinsHit[lastAction.pinsHit.length - 1];
 		if (lastPin < 0) {
 			match.scores[lastAction.team] = -1 * lastPin;

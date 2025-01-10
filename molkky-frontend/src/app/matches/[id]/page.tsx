@@ -116,7 +116,7 @@ const MatchDetail = () => {
 		<div>
 			<div className={styles.header}>
 				<button onClick={() => router.push("/")} className={styles.backButton}>
-					<Image src="/back.png" alt="Back" width={24} height={24} />
+					<Image src="/back.png" alt="Back" width={30} height={30} />
 				</button>
 			</div>
 			<PinBoard onPinSelect={handlePinSelect} selectedPins={selectedPins} />
