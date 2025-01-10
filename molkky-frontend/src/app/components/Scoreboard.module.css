@@ -1,0 +1,52 @@
+.scoreboard {
+	margin-top: 16px;
+	background-color: #f0f8ff; /* Light color for the scoreboard */
+	padding: 16px;
+	border-radius: 8px;
+}
+
+.scoreboard table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 16px;
+}
+
+.scoreboard th,
+.scoreboard td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: #d9f2ff; /* Light color for table cells */
+}
+
+.scoreboard th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3em;
+	background-color: #95d7fa; /* Light color for table cells */
+}
+
+.scrollableWrapper {
+	max-height: 200px; /* Set a max height for the scrollable area */
+	overflow-y: auto; /* Enable vertical scrolling */
+	padding-bottom: 8px; /* Add padding to account for hidden scrollbar */
+}
+
+.scrollable {
+	display: flex;
+	flex-direction: column; /* Stack items vertically */
+}
+
+.historyItem {
+	background: #e6f7ff;
+	text-align: center;
+	padding: 4px;
+	margin: 2px 0;
+	border-radius: 4px;
+	font-weight: normal; /* Make text not bold */
+	font-size: 0.9em; /* Make text smaller */
+}
