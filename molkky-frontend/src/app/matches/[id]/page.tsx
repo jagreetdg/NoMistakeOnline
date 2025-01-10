@@ -25,7 +25,7 @@ interface Match {
 	history: MatchHistory[];
 }
 
-const socket: Socket = io("http://localhost:5000");
+const socket: Socket = io(process.env.NEXT_PUBLIC_API_BASE_URL);
 
 const MatchDetail = () => {
 	const [match, setMatch] = useState<Match | null>(null);
@@ -67,26 +67,26 @@ const MatchDetail = () => {
 				pinsHit: selectedPins,
 				score:
 					selectedPins.length === 1 ? selectedPins[0] : selectedPins.length,
-      });
+			});
 
-      if (response.data.message) {
-        if (response.data.tag === "win") {
-          Swal.fire({
-            title: "Winner!",
-            text: response.data.message,
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-        } else {
-          const alertTitle = response.data.tag === "bust" ? "Bust" : "3-Miss";
-          const alertIcon = response.data.tag === "bust" ? "warning" : "error";
-          Swal.fire({
-            title: alertTitle,
-            text: response.data.message,
-            icon: alertIcon,
-            confirmButtonText: "OK",
-          });
-        }
+			if (response.data.message) {
+				if (response.data.tag === "win") {
+					Swal.fire({
+						title: "Winner!",
+						text: response.data.message,
+						icon: "success",
+						confirmButtonText: "OK",
+					});
+				} else {
+					const alertTitle = response.data.tag === "bust" ? "Bust" : "3-Miss";
+					const alertIcon = response.data.tag === "bust" ? "warning" : "error";
+					Swal.fire({
+						title: alertTitle,
+						text: response.data.message,
+						icon: alertIcon,
+						confirmButtonText: "OK",
+					});
+				}
 			}
 			const updatedMatch = await API.get(`/matches/${match._id}`);
 			setMatch(updatedMatch.data);
