@@ -14,7 +14,7 @@ interface ClientToServerEvents {
 
 // Create a typed Socket instance
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-	"http://localhost:5000"
+	process.env.NEXT_PUBLIC_API_BASE_URL
 );
 
 export default function RootLayout({
