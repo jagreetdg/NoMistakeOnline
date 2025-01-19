@@ -55,20 +55,21 @@ exports.updateMatch = async (req, res) => {
 			});
 		}
 
+    // TODO Fix 3 Miss Condition
 		// Check if pinsHit has at least 3 elements and if the last 3 elements are 0
-		if (
-			match.history.length >= 3 &&
-			match.history.slice(-3).every((entry) => entry.pinsHit.length === 0)
-		) {
-			const losingTeam = match.teams[team];
+		// if (
+		// 	match.history.length >= 3 &&
+		// 	match.history.slice(-3).every((entry) => entry.pinsHit.length === 0)
+		// ) {
+		// 	const losingTeam = match.teams[team];
 
-			// End the game by calling clearHistory without sending a response
-			await exports.clearHistory(req, res, false);
-			return res.status(200).json({
-				tag: "3miss",
-				message: `${losingTeam} has lost the game!`,
-			});
-		}
+		// 	// End the game by calling clearHistory without sending a response
+		// 	await exports.clearHistory(req, res, false);
+		// 	return res.status(200).json({
+		// 		tag: "3miss",
+		// 		message: `${losingTeam} has lost the game!`,
+		// 	});
+		// }
 
 		await match.save();
 		res.json(match);
